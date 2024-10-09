@@ -1,0 +1,84 @@
+version: '3.8'
+
+services:
+  postgres:
+    container_name: postgres-sql-bsn
+    image: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=CulerMG1889++
+      - PGDATA=/var/lib/postgresql/data
+      - POSTGRES_DB=sopra
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - 15432:5432  # Mapper le port du conteneur 5432 vers le port 5433 sur l'hôte
+    restart: unless-stopped
+    networks:
+      - monitoring_net
+
+  bsn-api:
+    container_name: bsn-api
+    image: bsn/bsn:1.0.1
+    ports:
+      - 8080:8080
+    depends_on:
+      - postgres
+    environment:
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=CulerMG1889++
+      - DB_NAME=sopra
+    networks:
+      - monitoring_net
+
+  prometheus:
+    image: prom/prometheus:v2.46.0
+    ports:
+      - 9090:9090
+    volumes:
+      - ./docker/prometheus/tmp:/prometheus
+      - ./docker/prometheus/config:/etc/prometheus
+    command: --config.file=/etc/prometheus/prometheus.yml --log.level=debug
+    networks:
+      - monitoring_net
+
+  grafana:
+    image: grafana/grafana:10.0.3
+    ports:
+      - 4000:4000
+    volumes:
+      - ./docker/grafana/tmp:/var/lib/grafana
+      - ./docker/grafana/grafana.ini:/etc/grafana/grafana.ini
+    networks:
+      - monitoring_net
+
+  alertmanager:
+    image: prom/alertmanager:v0.25.0
+    ports:
+      - "9093:9093"
+    volumes:
+      - ./docker/alert-manager/tmp:/data
+      - ./docker/alert-manager/config:/config
+    command: --config.file=/config/alertmanager.yml --log.level=debug
+    networks:
+      - monitoring_net
+
+  front:
+    container_name: front-container
+    image: front-image
+    ports:
+      - 3000:80
+    depends_on:
+      - bsn-api
+    networks:
+      - monitoring_net
+
+volumes:
+  postgres:
+    driver: local
+
+networks:
+  monitoring_net:
+    driver: bridge

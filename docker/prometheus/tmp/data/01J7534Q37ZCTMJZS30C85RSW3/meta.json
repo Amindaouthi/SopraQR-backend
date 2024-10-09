@@ -1,0 +1,17 @@
+{
+	"ulid": "01J7534Q37ZCTMJZS30C85RSW3",
+	"minTime": 1725377955266,
+	"maxTime": 1725379200000,
+	"stats": {
+		"numSamples": 50,
+		"numSeries": 5,
+		"numChunks": 5
+	},
+	"compaction": {
+		"level": 1,
+		"sources": [
+			"01J7534Q37ZCTMJZS30C85RSW3"
+		]
+	},
+	"version": 1
+}
