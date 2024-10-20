@@ -146,8 +146,8 @@ jobs:
 
           platforms: linux/amd64
           tags: |
-           bsn-api:${{ env.VERSION }}
-           bsn-api:1.0.1
+            daouthiamine/sopra:bsn-api-${{ env.VERSION }}
+            daouthiamine/sopra:bsn-api-1.0.1
           build-args: |
             PROFILE=dev
             APP_VERSION=${{ env.VERSION }}
@@ -155,4 +155,5 @@ jobs:
 
 
 
+  
   
