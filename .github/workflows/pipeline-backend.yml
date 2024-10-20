@@ -143,6 +143,7 @@ jobs:
           context: .
           file: docker/Backend/Dockerfile
           push: true
+
           platforms: linux/amd64
           tags: |
            bsn-api:${{ env.VERSION }}
@@ -150,3 +151,8 @@ jobs:
           build-args: |
             PROFILE=dev
             APP_VERSION=${{ env.VERSION }}
+
+
+
+
+  dckr_pat_tLb2Ea26iEZ3raWDIdTsi57eQdE
