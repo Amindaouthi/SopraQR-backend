@@ -1,0 +1,17 @@
+{
+	"ulid": "01JAMYV99792CSR991K46YN8GH",
+	"minTime": 1729376656399,
+	"maxTime": 1729382400000,
+	"stats": {
+		"numSamples": 7,
+		"numSeries": 7,
+		"numChunks": 7
+	},
+	"compaction": {
+		"level": 1,
+		"sources": [
+			"01JAMYV99792CSR991K46YN8GH"
+		]
+	},
+	"version": 1
+}

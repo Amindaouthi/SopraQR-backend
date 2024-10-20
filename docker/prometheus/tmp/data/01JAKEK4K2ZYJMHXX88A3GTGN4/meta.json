@@ -1,0 +1,17 @@
+{
+	"ulid": "01JAKEK4K2ZYJMHXX88A3GTGN4",
+	"minTime": 1729353602508,
+	"maxTime": 1729360800000,
+	"stats": {
+		"numSamples": 262,
+		"numSeries": 7,
+		"numChunks": 7
+	},
+	"compaction": {
+		"level": 1,
+		"sources": [
+			"01JAKEK4K2ZYJMHXX88A3GTGN4"
+		]
+	},
+	"version": 1
+}

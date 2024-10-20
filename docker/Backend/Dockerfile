@@ -12,9 +12,9 @@ ARG PROFILE=dev
 ARG APP_VERSION=1.0.1
 WORKDIR /app
 COPY --from=build /build/target/spring-boot-*.jar /app/
-EXPOSE 8080
+EXPOSE 8083
 ENV DB_URL=jdbc:postgresql://postgres-sql-bsn:5432/sopra
-ENV DB_PWD=CulerMG1889++
+ENV DB_PWD=12345
 ENV MAILDEV_URL=localhost
 ENV ACTIVE_PROFILE=${PROFILE}
 ENV JAR_VERSION=${APP_VERSION}
